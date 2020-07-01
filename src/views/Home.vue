@@ -1,27 +1,30 @@
 <template>
-  <div class="carousel-container">
-    <v-carousel
-    cycle
-    >
-      <v-carousel-item
-        v-for="(item,i) in items"
-        :key="i"
-        :src="item.src"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
-      ></v-carousel-item>
-    </v-carousel>
+  <div class="home-wrapper">
+    <div class="carousel-container">
+      <v-carousel
+      cycle
+      >
+        <v-carousel-item
+          v-for="(item,i) in items"
+          :key="i"
+          :src="item.src"
+          reverse-transition="fade-transition"
+          transition="fade-transition"
+        ></v-carousel-item>
+      </v-carousel>
+    </div>
+    <Categories />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import Categories from '../components/Categories'
 
 
 export default {
   name: 'Home',
   components: {
-    
+    Categories
   },
   data () {
     return {
