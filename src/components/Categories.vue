@@ -97,7 +97,6 @@ export default {
                     'Accept': 'application/json'
                 }
             }
-
             if(this.category === 'all'){
                 try {
                     const news = await axios.get(this.urlNoCategory, config)
