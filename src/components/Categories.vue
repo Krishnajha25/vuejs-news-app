@@ -1,8 +1,47 @@
 <template>
-    <div class="categories-wrapper">
-        <ul>
-            <li @click="showCategory(item.id)" class="category-list" v-for="(item, id) in categoryList" :key="id"> {{ item.name | captalize }} </li>
-        </ul>        
+    <div class="category-wise-new">
+        <div class="categories-wrapper">
+            <ul>
+                <li @click="showCategory(item.id)" class="category-list" v-for="(item, id) in categoryList" :key="id"> {{ item.name | captalize }} </li>
+            </ul>        
+        </div> 
+        <div class="news-section">
+            <v-container grid-list-md>
+                <v-row justify="space-around">
+                    <v-col cols="auto" v-for="(news, id) in newsList" :key="id" >
+                        <v-card
+                            class="mx-auto"
+                            max-width="300"
+                        >
+                            <v-img
+                                class="white--text align-end"
+                                height="200px"
+                                :src="news.urlToImage"
+                            >
+                                <!-- <v-card-title>
+                                    {{ news.title }}
+                                </v-card-title> -->
+                            </v-img>
+                            <v-card-subtitle class="pb-0">{{ news.source.name }}</v-card-subtitle>
+                            <v-card-text class="text--primary">
+                                <!-- <div>Whitehaven Beach</div> -->
+
+                                <div>{{ news.title }}</div>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-btn
+                                color="orange"
+                                text
+                                >
+                                Read more
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
     </div>
 </template>
 
@@ -15,9 +54,9 @@ export default {
     data() {
         return {
             // isHover: false,
-            urlNoCategory: "https://newsapi.org/v2/sources?country=in&apiKey=e11cc1ccc525413bb847716b1f210c33",
-            categories: [],
-            category: '',
+            urlNoCategory: "https://newsapi.org/v2/top-headlines?country=in&apiKey=e11cc1ccc525413bb847716b1f210c33",
+            newsList: [],
+            category: 'all',
             categoryList: [ 
                 {
                     "id": 0,
@@ -61,18 +100,20 @@ export default {
 
             if(this.category === 'all'){
                 try {
-                    const categories = await axios.get(this.urlNoCategory, config)
-                    console.log(categories.data.sources)   
+                    const news = await axios.get(this.urlNoCategory, config)
+                    console.log(news.data.articles)   
+                    this.newsList = news.data.articles
 
                 } catch (err) {
                     console.log(err)
                 }
             }
             else{
-                let urlCategory= "https://newsapi.org/v2/sources?country=in&category="+ this.category +"&apiKey=e11cc1ccc525413bb847716b1f210c33"
+                let urlCategory= "https://newsapi.org/v2/top-headlines?country=in&category="+ this.category +"&apiKey=e11cc1ccc525413bb847716b1f210c33"
                 try {
-                    const categories = await axios.get(urlCategory, config)
-                    console.log(categories.data.sources)   
+                    const news = await axios.get(urlCategory, config)
+                    this.newsList = news.data.articles
+                    console.log(news.data.articles)   
                 } catch (err) {
                     console.log(err)
                 }
