@@ -8,37 +8,39 @@
         <div class="news-section">
             <v-container grid-list-md>
                 <v-row justify="space-around">
-                    <v-col cols="auto" v-for="(news, id) in newsList" :key="id" >
-                        <v-card
-                            class="mx-auto"
-                            max-width="300"
-                        >
-                            <v-img
-                                class="white--text align-end"
-                                height="200px"
-                                :src="news.urlToImage"
+                    <!-- <div class="news-card"> -->
+                        <v-col class="news-card" cols="auto" v-for="(news, id) in newsList" :key="id" >
+                            <v-card
+                                class="mx-auto"
+                                max-width="300"
                             >
-                                <!-- <v-card-title>
-                                    {{ news.title }}
-                                </v-card-title> -->
-                            </v-img>
-                            <v-card-subtitle class="pb-0">{{ news.source.name }}</v-card-subtitle>
-                            <v-card-text class="text--primary">
-                                <!-- <div>Whitehaven Beach</div> -->
-
-                                <div>{{ news.title }}</div>
-                            </v-card-text>
-
-                            <v-card-actions>
-                                <v-btn
-                                color="orange"
-                                text
+                                <v-img
+                                    class="white--text align-end"
+                                    height="200px"
+                                    :src="news.urlToImage"
                                 >
-                                Read more
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
+                                    <!-- <v-card-title>
+                                        {{ news.title }}
+                                    </v-card-title> -->
+                                </v-img>
+                                <v-card-subtitle class="pb-0">{{ news.source.name }}</v-card-subtitle>
+                                <v-card-text class="text--primary">
+                                    <!-- <div>Whitehaven Beach</div> -->
+
+                                    <div>{{ news.title }}</div>
+                                </v-card-text>
+
+                                <v-card-actions>
+                                    <v-btn
+                                    color="orange"
+                                    text
+                                    >
+                                    Read more
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-col>
+                    <!-- </div> -->
                 </v-row>
             </v-container>
         </div>
@@ -100,7 +102,7 @@ export default {
             if(this.category === 'all'){
                 try {
                     const news = await axios.get(this.urlNoCategory, config)
-                    console.log(news.data.articles)   
+                    // console.log(news.data.articles)   
                     this.newsList = news.data.articles
 
                 } catch (err) {
@@ -112,7 +114,7 @@ export default {
                 try {
                     const news = await axios.get(urlCategory, config)
                     this.newsList = news.data.articles
-                    console.log(news.data.articles)   
+                    // console.log(news.data.articles)   
                 } catch (err) {
                     console.log(err)
                 }
@@ -220,6 +222,10 @@ export default {
 
     .categories-wrapper ul a:hover{
         box-shadow: 0, 0, 12, rgba(0, 0, 0, 0.7);
+    }
+
+    .news-card:hover{
+        box-shadow: rgba(0, 0, 0, 0.7);
     }
 
 </style>
