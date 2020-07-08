@@ -4,6 +4,9 @@
         <div class="center">
             This is a simple News App made using <strong class="red--text text--lighten-1">Vue.js</strong> and <strong class="red--text text--lighten-1">Vuetify</strong>.
         </div>
+        <div class="profile">
+            Profile
+        </div>
     </div>  
 </template>
 
@@ -25,6 +28,15 @@ export default {
 
     .center{
         text-align: center;
+    }
+
+    .profile{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        margin-right: 60px;
+        padding: 10px;
     }
 
 
