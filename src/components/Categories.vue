@@ -17,7 +17,7 @@
                                 <v-img
                                     class="white--text align-end"
                                     height="200px"
-                                    :src="news.urlToImage"
+                                    :src="news.urlToImage" @error="changeImage"
                                 >
                                     <!-- <v-card-title>
                                         {{ news.title }}
@@ -88,7 +88,8 @@ export default {
                     "id": 6,
                     "name": "technology"
                 }
-            ]
+            ],
+            defaultImage: "https://static9.depositphotos.com/1011646/1236/i/950/depositphotos_12369509-stock-photo-breaking-news-screen.jpg"
         }
     },
     methods: {
@@ -119,8 +120,6 @@ export default {
                     console.log(err)
                 }
             }
-
-            
         },
 
         showCategory(id){
@@ -140,6 +139,9 @@ export default {
                     }
                 });
             }
+        },
+        changeImage(){
+            this.newsList.urlToImage = "https://static9.depositphotos.com/1011646/1236/i/950/depositphotos_12369509-stock-photo-breaking-news-screen.jpg"
         }
 
     },

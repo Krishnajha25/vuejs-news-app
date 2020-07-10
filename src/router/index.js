@@ -26,6 +26,11 @@ Vue.use(VueRouter)
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue')
   },
+  {
+    path: '/news/:id',
+    name: 'News',
+    component: () => import(/* webpackChunkName: "news" */ '../views/News.vue')
+  }
   
 ]
 
